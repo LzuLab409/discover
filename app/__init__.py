@@ -11,25 +11,28 @@
 
 # here put the import lib
 import os
-from flask import Flask
+from flask import Flask,jsonify,render_template
 
-def create_app(test_config=None):
+def create_app():
     app=Flask(__name__,instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
+        UPLOAD_FOLDER='X:\\develope\\coding\\iwhale\\data',
+        ALLOWED_EXTENSIONS={'txt'},
     )
 
-    if test_config is None:
-        app.config.from_pyfile('config.py',silent=True)
-    else:
-        app.config.from_mapping(test_config)
-
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    # @app.route('/test')
+    # def hello():
+    #     print(app.config['UPLOAD_FOLDER'])
+    #     return '舆情检测系统！！'
     
-    @app.route('/')
-    def hello():
-        return 'hello world!'
+    app.debug=True
+
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return render_template('404.html'),404
+
+    from . import visual
+    app.register_blueprint(visual.bp)
+
     return app

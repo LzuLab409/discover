@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>舆情监控系统</title>
+		<link rel="stylesheet" type="text/css" href="static/css/app.css" />
+		<script type="text/javascript" src="static/css/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript" src="static/css/jquery.form.js"></script>
+		<script>
+			//设置算法
+			function set1() {
+				$(".dropbtn").text($(".algorithm1").text());
+				//$(".dropdown-content").css("visibility","hidden");
+			}
+			function set2() {
+				$(".dropbtn").text($(".algorithm2").text());
+			}
+			//获取结果
+			function getresult() {
+				
+				//$("#showresult").load("img/icon-01.png");
+			}
+			function start() {
+				$("#bt_div").css("visibility","hidden");
+				$("#re_div").css("display","block");
+				getresult();
+				//$("#showresult").html("<h1 style='color: white;text-align: center'>helloword!!!</h1>");
+			}
+			function restart() {
+				getresult();
+				//$("#showresult").html("<h1 style='color: white;text-align: center'>helloword!!!</h1>");
+			}
+
+			function saveReport(){
+				$("#uploadForm").ajaxSubmit(function(result){
+					alert(result.msg)
+				});
+				return false
+			}
+		</script>
+	</head>
+	
+	<body>
+		<header id="header">
+			<h3 class="header-title">校园IPv6网络舆情监控系统</h3>
+		</header>
+		<footer id="footer"></footer>
+		<div id="container">
+			<div id="flexCon">
+				<div class="flex-row">
+					<div class="flex-cell flex-cell-l">
+						<div class="chart-wrapper">
+							<h1 class="chart-title">Options</h1>
+							<div class="chart-div">
+								<div class="options-div">
+									<div class="dropdown">
+										<button class="dropbtn">选择处理算法</button>
+										<div class="dropdown-content">
+											<a class="algorithm1" onclick="set1()">KNN</a>
+											<a class="algorithm2" onclick="set2()">SVM</a>
+										</div>
+									</div>
+								</div>
+								<div class="options-div">
+									<div>
+										<form id="uploadForm" method = "POST" action="/uploadData" enctype = "multipart/form-data" onsubmit="return saveReport()"> 
+											<!-- <a type="button" id="upbtn" href="javascript:;" class="file" onchange="upload()">选择文件
+												<input type="file" id="myfile">
+											</a> -->
+											<input type="file" name="file" id="upbtn" class="file"/>
+											<input type="submit"/>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex-cell flex-cell-r">
+						<div class="chart-wrapper">
+							<h1 class="chart-title">Result</h1>
+							<div class="chart-div chart-done" id="showresult">
+								<div class="options-div" id="bt_div" style="left: 300px;height: 80%;line-height: 550px;">
+									<button class="bt" onclick="start()">Start</button>
+								</div>
+								<div class="options-div" id="re_div" style="left: 300px;height: 20%; display: none;">
+									<button class="bt" onclick="restart()">ReStart</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
