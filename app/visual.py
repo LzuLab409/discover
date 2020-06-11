@@ -51,13 +51,19 @@ def upload_data():
 
 @bp.route('/submit',methods=['POST'])
 def submit():
+    result={'msg':'sucess','imgPath':''}
     try:
         algorithm=request.form['algorithm']
+        filename=request.form['filename']
+        print(algorithm)
+        print(filename)
+        #调用相应算法
+        result['imgPath']='static/img/icon-01.png'
+        return jsonify(result)
     except KeyError:
-        return 'get key error'
-    # file_path=
-    print(algorithm)
-    return '此处return算法运行生成图片的path，在前端ajax方法内实现局部刷新可视化'
+        result['msg']='get key error'
+        return jsonify(result)
+
 
 
 

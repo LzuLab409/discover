@@ -19,8 +19,21 @@
 			}
 			//获取结果
 			function getresult() {
-				
-				//$("#showresult").load("img/icon-01.png");
+				$.ajax({
+					type:"POST",
+					url:"/submit",
+					data:{algorithm:"算法",filename:"文件"},
+					dataType:"JSON",
+					success:function(result){
+						alert(result.msg)
+						//图片保存路径 result.imgPath
+						// $("#showresult").load("static/img/icon-01.png");
+						$("#showresult").append("<img src=\""+result.imgPath+"\">")
+					},
+					error:function(result){
+						alert(result.msg)
+					}
+				});
 			}
 			function start() {
 				$("#bt_div").css("visibility","hidden");
