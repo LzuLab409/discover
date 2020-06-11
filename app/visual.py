@@ -23,10 +23,10 @@ bp=Blueprint('visual',__name__)
 def data_visual():
     return render_template('index.html')
 
-@bp.route('/getAlgorithm')
-def get_algorithm():
-    algorithm=['ICM算法','算法二','算法三','算法四']
-    return jsonify(algorithm)
+# @bp.route('/getAlgorithm')
+# def get_algorithm():
+#     algorithm=['ICM算法','算法二','算法三','算法四']
+#     return jsonify(algorithm)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.',1)[1].lower() in app.config['ALLOWED_EXTENSIONS']

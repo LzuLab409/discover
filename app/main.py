@@ -13,6 +13,6 @@
 from . import __init__ as init
 
 if __name__=='__main__':
-    app=init.create_app()
-    app.run()
+    # app=init.create_app()
+    # app.run()
 
