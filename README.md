@@ -1,6 +1,6 @@
 # 运行方式
 ```
 set FLASK_APP=app
-set FALSK_ENV=development
+set FLASK_ENV=development
 flask run
 ```
