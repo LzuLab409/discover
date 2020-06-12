@@ -36,8 +36,3 @@ def create_app():
     app.register_blueprint(visual.bp)
 
     return app
-
-if __name__=='__main__':
-    app=create_app()
-    app.debug=True
-    app.run()

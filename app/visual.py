@@ -43,11 +43,15 @@ def upload_data():
         flash('no selected file')
         return redirect(request.url)
     
+    result={'staus':True,'msg':'文件上传成功'}
     if file and allowed_file(file.filename):
         filename=secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-        result={'staus':True,'msg':'保存成功'}
         return jsonify(result) 
+    else:
+        result['status']=False
+        result['msg']='所上传文件类型不符合要求'
+        return jsonify(result)
 
 @bp.route('/submit',methods=['POST'])
 def submit():
