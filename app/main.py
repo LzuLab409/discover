@@ -10,9 +10,9 @@
 '''
 
 # here put the import lib
-from . import __init__ as init
+from __init__ import create_app
 
 if __name__=='__main__':
-    # app=init.create_app()
-    # app.run()
+    app=create_app()
+    app.run()
 
