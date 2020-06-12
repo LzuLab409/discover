@@ -22,7 +22,7 @@ body {
 	background:url("../img/header.png") 0 0 / 100% 100% no-repeat;
 	overflow:hidden;
 }
-.header-title {line-height:64px;text-align:center;font-size:32px;font-weight:400;color:#fff;letter-spacing:15px;}
+.header-title {line-height:64px;text-align:center;font-size:32px;font-weight:400;color:#fff;}
 .header-info {position:absolute;top:32px;font-size:18px;color:#73aae5;}
 .header-info-l {left:20px;}
 .header-info-r {right:20px;}
@@ -124,7 +124,6 @@ body {
 /* upload button*/
 .bt {
     background-color: #5f6477;
-    border: none;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -138,38 +137,51 @@ body {
 	border:2px solid #5f6477;
 }
 
-.file {
-		position: relative;
-		display: inline-block;
-		background-color: #5f6477;
-		border-radius:10px;
-		border:2px solid #5f6477;
-		overflow: hidden;
-		text-decoration: none;
-		text-align: center;
-		line-height:56.8px;
-		left:100px;
-		top:40px;
-		font-size: 16px;
-		width:160px;
-		height:56.8px;
-		color: white;
-	}
-	.file input {
-		position: absolute;
-		font-size: 100px;
-		right: 0;
-		top: 0;
-		opacity: 0;
-	}
-	.file:hover {
-		background: #5f6477;
-		border-color: #5f6477;
-		color: white;
-		text-decoration: none;
-	}
+.a-upload {
+    height:56.8px;
+	width:160px;
+    line-height: 56.8px;
+    position: relative;
+    cursor: pointer;
+	*left:100px;
+	margin-left: 100px;
+    color: white;
+    background-color: #5f6477;
+    border:2px solid #5f6477;
+    border-radius: 10px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+	opacity: 0;
+    cursor: pointer
+}
+/*
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}*/
 
 
+.upmodule {
+	left: 100px;
+	width:160px;
+}
+
+#filename{
+	text-align: center;
+}
 
 /* media query */
 @media (max-width:1900px) {

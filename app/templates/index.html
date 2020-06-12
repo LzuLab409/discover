@@ -28,7 +28,10 @@
 						alert(result.msg)
 						//图片保存路径 result.imgPath
 						// $("#showresult").load("static/img/icon-01.png");
-						$("#showresult").append("<img src=\""+result.imgPath+"\">")
+						$("#showresult").html("<img src=\""+result.imgPath+"\" style='vertical-align: middle;position: absolute;\n" +
+								"            top:50%; \n" +
+								"            left:50%;\n" +
+								"            transform: translate(-50%,-50%);'>")
 					},
 					error:function(result){
 						alert(result.msg)
@@ -39,11 +42,9 @@
 				$("#bt_div").css("visibility","hidden");
 				$("#re_div").css("display","block");
 				getresult();
-				//$("#showresult").html("<h1 style='color: white;text-align: center'>helloword!!!</h1>");
 			}
 			function restart() {
 				getresult();
-				//$("#showresult").html("<h1 style='color: white;text-align: center'>helloword!!!</h1>");
 			}
 
 			function saveReport(){
@@ -51,6 +52,9 @@
 					alert(result.msg)
 				});
 				return false
+			}
+			function showfilename() {
+				$("#filename").text($("#upbtn").val())
 			}
 		</script>
 	</head>
@@ -77,13 +81,20 @@
 									</div>
 								</div>
 								<div class="options-div">
-									<div>
-										<form id="uploadForm" method = "POST" action="/uploadData" enctype = "multipart/form-data" onsubmit="return saveReport()"> 
+									<div style="height: 100%">
+										<form style="height: 100%" id="uploadForm" method = "POST" action="/uploadData" enctype = "multipart/form-data" onsubmit="return saveReport()">
 											<!-- <a type="button" id="upbtn" href="javascript:;" class="file" onchange="upload()">选择文件
 												<input type="file" id="myfile">
 											</a> -->
-											<input type="file" name="file" id="upbtn" class="file"/>
-											<input type="submit"/>
+											<div style="height: 70%;">
+												<div class="a-upload">
+													<div id="filename">选择文件</div>
+													<input type="file" name="file" id="upbtn" class="a-upload" onchange="showfilename()"/>
+												</div>
+											</div>
+											<div style="height: 30%;">
+												<input type="submit" class="bt" value="上传数据"/>
+											</div>
 										</form>
 									</div>
 								</div>
@@ -94,8 +105,8 @@
 						<div class="chart-wrapper">
 							<h1 class="chart-title">Result</h1>
 							<div class="chart-div chart-done" id="showresult">
-								<div class="options-div" id="bt_div" style="left: 300px;height: 80%;line-height: 550px;">
-									<button class="bt" onclick="start()">Start</button>
+								<div class="options-div" id="bt_div" style="height: 80%;line-height: 550px;text-align: center;">
+									<button class="bt" onclick="start()" style="left: 0px !important;">Start</button>
 								</div>
 								<div class="options-div" id="re_div" style="left: 300px;height: 20%; display: none;">
 									<button class="bt" onclick="restart()">ReStart</button>
