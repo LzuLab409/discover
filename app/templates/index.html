@@ -19,10 +19,12 @@
 			}
 			//获取结果
 			function getresult() {
+				var algorithm=$(".dropbtn").text()
+				var filename=$("#filename").text()
 				$.ajax({
 					type:"POST",
 					url:"/submit",
-					data:{algorithm:"算法",filename:"文件"},
+					data:{algorithm:algorithm,filename:filename},
 					dataType:"JSON",
 					success:function(result){
 						alert(result.msg)

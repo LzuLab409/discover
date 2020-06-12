@@ -59,9 +59,14 @@ def submit():
     try:
         algorithm=request.form['algorithm']
         filename=request.form['filename']
-        print(algorithm)
-        print(filename)
-        #调用相应算法
+        file=filename.split('\\')[2]
+        filePath=os.path.join(app.config['UPLOAD_FOLDER'],file)
+        #调用相应算法  上传的文件路径为filePath
+        if algorithm is "svm":
+            # svm(filename)
+            print('')
+        else:
+            result['msg']='error: 不支持所选择的算法'
         result['imgPath']='static/img/icon-01.png'
         return jsonify(result)
     except KeyError:
