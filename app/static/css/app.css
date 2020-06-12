@@ -67,6 +67,11 @@ body {
 
 
 
+.imgstyle {
+	vertical-align: middle;
+	position: absolute;
+}
+
 
 /* select */
 /* 下拉按钮样式 */

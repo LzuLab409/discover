@@ -28,10 +28,11 @@
 						alert(result.msg)
 						//图片保存路径 result.imgPath
 						// $("#showresult").load("static/img/icon-01.png");
-						$("#showresult").html("<img src=\""+result.imgPath+"\" style='vertical-align: middle;position: absolute;\n" +
+						$("#show").html("<img src=\""+result.imgPath+"\" style='vertical-align: middle;position: absolute;\n" +
 								"            top:50%; \n" +
 								"            left:50%;\n" +
-								"            transform: translate(-50%,-50%);'>")
+								"            transform: translate(-50%,-50%);" +
+								"            '>")
 					},
 					error:function(result){
 						alert(result.msg)
@@ -69,7 +70,7 @@
 				<div class="flex-row">
 					<div class="flex-cell flex-cell-l">
 						<div class="chart-wrapper">
-							<h1 class="chart-title">Options</h1>
+							<h1 class="chart-title">选项</h1>
 							<div class="chart-div">
 								<div class="options-div">
 									<div class="dropdown">
@@ -103,13 +104,16 @@
 					</div>
 					<div class="flex-cell flex-cell-r">
 						<div class="chart-wrapper">
-							<h1 class="chart-title">Result</h1>
+							<h1 class="chart-title">数据可视化</h1>
 							<div class="chart-div chart-done" id="showresult">
-								<div class="options-div" id="bt_div" style="height: 80%;line-height: 550px;text-align: center;">
-									<button class="bt" onclick="start()" style="left: 0px !important;">Start</button>
+								<div class="options-div" id="show" style="height: 80%;line-height: 550px;text-align: center;">
+									<div class="options-div" id="bt_div" style="height: 80%;line-height: 550px;text-align: center;">
+										<button class="bt" onclick="start()" style="left: 0px !important;">开始</button>
+									</div>
 								</div>
+
 								<div class="options-div" id="re_div" style="left: 300px;height: 20%; display: none;">
-									<button class="bt" onclick="restart()">ReStart</button>
+									<button class="bt" onclick="restart()">重新开始</button>
 								</div>
 							</div>
 						</div>
