@@ -9,6 +9,8 @@
 		<script type="text/javascript" src="static/css/jquery-3.5.1.min.js"></script>
 		<script type="text/javascript" src="static/css/jquery.form.js"></script>
 		<script>
+			var index = 0;
+			var imagePath = new Array();
 			//设置算法
 			function set1() {
 				$(".dropbtn").text($(".algorithm1").text());
@@ -29,9 +31,9 @@
 					success:function(result){
 						alert(result.msg)
 						//图片位置列表 result.imgPath
-						alert(result.imgPath)
-						// $("#showresult").load("static/img/icon-01.png");
-						$("#show").html("<img src=\""+result.imgPath+"\" style='vertical-align: middle;position: absolute;\n" +
+						imagePath = result.imgPath;
+						$(".previous_next").css("display","block");
+						$("#show").html("<img src=\""+imagePath[index]+"\" style='vertical-align: middle;position: absolute;width: 640px;height: 450px;\n" +
 								"            top:50%; \n" +
 								"            left:50%;\n" +
 								"            transform: translate(-50%,-50%);" +
@@ -47,9 +49,6 @@
 				$("#re_div").css("display","block");
 				getresult();
 			}
-			function restart() {
-				getresult();
-			}
 
 			function saveReport(){
 				$("#uploadForm").ajaxSubmit(function(result){
@@ -59,6 +58,38 @@
 			}
 			function showfilename() {
 				$("#filename").text($("#upbtn").val())
+			}
+
+			//显示下一张
+			function next_pic() {
+				if (index == imagePath.length-1) {
+					alert("已经是最后一张了！")
+					return
+				}
+				else {
+					index = index + 1
+					$("#show").html("<img src=\"" + imagePath[index] + "\" style='vertical-align: middle;position: absolute;width: 640px;height: 450px;\n" +
+							"            top:50%; \n" +
+							"            left:50%;\n" +
+							"            transform: translate(-50%,-50%);" +
+							"            '>")
+				}
+			}
+
+			//显示上一张
+			function previous_pic() {
+				if (index == 0) {
+					alert("已经是第一张了！")
+					return
+				}
+				else {
+					index = index - 1
+					$("#show").html("<img src=\"" + imagePath[index] + "\" style='vertical-align: middle;position: absolute;width: 640px;height: 450px;\n" +
+							"            top:50%; \n" +
+							"            left:50%;\n" +
+							"            transform: translate(-50%,-50%);" +
+							"            '>")
+				}
 			}
 		</script>
 	</head>
@@ -110,13 +141,17 @@
 							<h1 class="chart-title">数据可视化</h1>
 							<div class="chart-div chart-done" id="showresult">
 								<div class="options-div" id="show" style="height: 80%;line-height: 550px;text-align: center;">
-									<div class="options-div" id="bt_div" style="height: 80%;line-height: 550px;text-align: center;">
+									<div class="options-div" id="bt_div" style="height: 100%;line-height: 550px;text-align: center;">
 										<button class="bt" onclick="start()" style="left: 0px !important;">开始</button>
 									</div>
 								</div>
-
-								<div class="options-div" id="re_div" style="left: 300px;height: 20%; display: none;">
-									<button class="bt" onclick="restart()">重新开始</button>
+								<div class="previous_next">
+									<button class="bt" style="left: 165px;top: 20px" onclick="previous_pic()">
+										上一张
+									</button>
+									<button class="bt" style="left: 500px;top: 20px" onclick="next_pic()">
+										下一张
+									</button>
 								</div>
 							</div>
 						</div>
