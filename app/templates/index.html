@@ -28,7 +28,8 @@
 					dataType:"JSON",
 					success:function(result){
 						alert(result.msg)
-						//图片保存路径 result.imgPath
+						//图片位置列表 result.imgPath
+						alert(result.imgPath)
 						// $("#showresult").load("static/img/icon-01.png");
 						$("#show").html("<img src=\""+result.imgPath+"\" style='vertical-align: middle;position: absolute;\n" +
 								"            top:50%; \n" +
@@ -78,7 +79,7 @@
 									<div class="dropdown">
 										<button class="dropbtn">选择处理算法</button>
 										<div class="dropdown-content">
-											<a class="algorithm1" onclick="set1()">KNN</a>
+											<a class="algorithm1" onclick="set1()">ICM</a>
 											<a class="algorithm2" onclick="set2()">SVM</a>
 										</div>
 									</div>

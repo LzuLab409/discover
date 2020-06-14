@@ -5,8 +5,13 @@ from numpy import zeros,ones, empty
 import numpy as np
 import os
 from numpy import *
-def func():
-    path = r'F:\jupyter\dataset\karate-int.txt'
+
+def func(filepath):
+    '''
+        :params filepath:默认不对路径字符串进行转义
+        :return: 返回生成的图片数
+    '''
+    path = filepath
     G = nx.read_edgelist(path, nodetype=int)
 # nodeNum1 = len(G.nodes())
 # if min(G.node())!=0:
@@ -54,6 +59,7 @@ def func():
     orderLength = k
     #index=1
     z = -1
+    count=0
     while activeOrderIndex[i] !=None:
         nodeID = activeOrderIndex[i]
         for j in range(nodeNum):
@@ -70,7 +76,7 @@ def func():
                     resT4=resultTable[nodeID,4]
                     resultTable[j,4]=resT4+1.0
         nx.draw_networkx(G, pos= nx.kamada_kawai_layout(G), node_color=colors)
-        #plt.show()
+        # plt.show()
         #name="demo{}.jps".format(index)
         
         #plt.savefig("static/img/%d.jpg"%(i+1))
@@ -83,11 +89,12 @@ def func():
             #plt.pause(1)
             #plt.close()
         #plt.savefig("app/static/img/k.jpg")
-        plt.savefig("app/static/img/'%d.jpg"%(z+1))
+        plt.savefig("app/static/img/%d.jpg"%(z+1))
         if i+1 <=orderLength:
             print (activeOrderLabel[i])
             print (activeOrderLabel[i+1:orderLength])
         i = i+1
+        count+=1
         #return demo,
     print ('Label State activeNode Weight time')
     print (resultTable)
@@ -96,7 +103,11 @@ def func():
     Activerate=float(orderLength)/float(nodeNum)
     print ('The actived vertex number is:',orderLength,',actived rate is :',format(Activerate*100,'.2f'),'%\n')
     print ('The actived node sequence in order is:',activeOrderLabel[0:orderLength])
-if __name__ =='__main__':
-    func()
+    return count
+# if __name__ =='__main__':
+    # func('X://develope//coding//iwhale//discover//app//network//karate-int.txt')
 #nx.draw_networkx(G, node_color=colors)
 #plt.show()
+    # file='X:\develope\coding\iwhale\data\karate-int.txt'
+    # filePath=r'%s'%file
+    # print(filePath)

@@ -32,7 +32,7 @@ def create_app():
     def page_not_found(error):
         return render_template('404.html'),404
 
-    from . import visual
+    import visual
     app.register_blueprint(visual.bp)
 
     return app

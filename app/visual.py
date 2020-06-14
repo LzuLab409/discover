@@ -21,6 +21,10 @@ bp=Blueprint('visual',__name__)
 
 @bp.route('/')
 def data_visual():
+    print('test:{}'.format(os.path.dirname('static/img/bg.png')))
+    index=1
+    current_path=os.path.join('static/img/demo{}'.format(index))
+    print(current_path)
     return render_template('index.html')
 
 # @bp.route('/getAlgorithm')
@@ -61,13 +65,19 @@ def submit():
         filename=request.form['filename']
         file=filename.split('\\')[2]
         filePath=os.path.join(app.config['UPLOAD_FOLDER'],file)
-        #调用相应算法  上传的文件路径为filePath
-        if algorithm is "svm":
-            # svm(filename)
-            print('')
+        print(filePath)
+        filePath=r'%s'%filePath
+        print(algorithm)
+        if algorithm == 'ICM':
+            from ICM import func
+            count=func(filePath)
+            imgList=[]
+            for i in range(1,count+1):
+                imgList.append('static/img/{}.jpg'.format(i))
+            result['msg']='run sucess'
         else:
             result['msg']='error: 不支持所选择的算法'
-        result['imgPath']='static/img/icon-01.png'
+        result['imgPath']=imgList
         return jsonify(result)
     except KeyError:
         result['msg']='get key error'
