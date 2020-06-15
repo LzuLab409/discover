@@ -70,6 +70,16 @@ body {
 .imgstyle {
 	vertical-align: middle;
 	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	
+}
+
+.previous_next {
+	display: none;
+	height: 20%;
+	text-align:center;
 }
 
 
