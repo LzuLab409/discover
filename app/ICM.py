@@ -75,7 +75,7 @@ def func(filepath):
                 #resultTable[j,3] = temp
                     resT4=resultTable[nodeID,4]
                     resultTable[j,4]=resT4+1.0
-        nx.draw_networkx(G, pos= nx.kamada_kawai_layout(G), node_color=colors)
+        # nx.draw_networkx(G, pos= nx.kamada_kawai_layout(G), node_color=colors)
         # plt.show()
         #name="demo{}.jps".format(index)
         

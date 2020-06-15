@@ -59,6 +59,7 @@ def upload_data():
 
 @bp.route('/submit',methods=['POST'])
 def submit():
+    print('submit...')
     result={'msg':'sucess','imgPath':''}
     try:
         algorithm=request.form['algorithm']
