@@ -5,13 +5,13 @@ from numpy import zeros,ones, empty
 import numpy as np
 import os
 from numpy import *
-
-def func(filepath):
+def func(filePath):
     '''
-        :params filepath:默认不对路径字符串进行转义
-        :return: 返回生成的图片数
+        :param: filePath: 固定参数，算法数据集文件路径
+        :return: count: 生成图片的个数
     '''
-    path = filepath
+    # path = r'X:\develope\coding\iwhale\discover\app\network\karate-int.txt'
+    path=filePath
     G = nx.read_edgelist(path, nodetype=int)
 # nodeNum1 = len(G.nodes())
 # if min(G.node())!=0:
@@ -21,7 +21,7 @@ def func(filepath):
     nodeNum = len(G.nodes())
     print (nodeNum)
     colors = zeros((nodeNum))
-    plt.ion()
+    # plt.ion()
     for i in range(nodeNum):
         G.node[i]['label'] = i
     resultTable=zeros([nodeNum,5])
@@ -59,7 +59,7 @@ def func(filepath):
     orderLength = k
     #index=1
     z = -1
-    count=0
+    count=1
     while activeOrderIndex[i] !=None:
         nodeID = activeOrderIndex[i]
         for j in range(nodeNum):
@@ -75,10 +75,10 @@ def func(filepath):
                 #resultTable[j,3] = temp
                     resT4=resultTable[nodeID,4]
                     resultTable[j,4]=resT4+1.0
-        # nx.draw_networkx(G, pos= nx.kamada_kawai_layout(G), node_color=colors)
-        # plt.show()
+        nx.draw_networkx(G, pos= nx.kamada_kawai_layout(G), node_color=colors)
+        #plt.show()
         #name="demo{}.jps".format(index)
-        
+        count+=1
         #plt.savefig("static/img/%d.jpg"%(i+1))
         #current_path=os.path.join("static/img/demo{}.png".format(index))
         #print(str(current_path))
@@ -94,7 +94,6 @@ def func(filepath):
             print (activeOrderLabel[i])
             print (activeOrderLabel[i+1:orderLength])
         i = i+1
-        count+=1
         #return demo,
     print ('Label State activeNode Weight time')
     print (resultTable)
@@ -105,9 +104,6 @@ def func(filepath):
     print ('The actived node sequence in order is:',activeOrderLabel[0:orderLength])
     return count
 # if __name__ =='__main__':
-    # func('X://develope//coding//iwhale//discover//app//network//karate-int.txt')
+#     func()
 #nx.draw_networkx(G, node_color=colors)
 #plt.show()
-    # file='X:\develope\coding\iwhale\data\karate-int.txt'
-    # filePath=r'%s'%file
-    # print(filePath)
