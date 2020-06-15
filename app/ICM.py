@@ -89,7 +89,9 @@ def func(filePath):
             #plt.pause(1)
             #plt.close()
         #plt.savefig("app/static/img/k.jpg")
-        plt.savefig("app/static/img/%d.jpg"%(z+1))
+        current_path=os.getcwd()
+        save_path=current_path+os.sep+'app'+os.sep+'data'+os.sep+'%d.jpg'%(z+1)
+        plt.savefig(save_path)
         if i+1 <=orderLength:
             print (activeOrderLabel[i])
             print (activeOrderLabel[i+1:orderLength])

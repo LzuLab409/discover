@@ -17,7 +17,8 @@ def create_app():
     app=Flask(__name__,instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        UPLOAD_FOLDER='X:\\develope\\coding\\iwhale\\data',
+        UPLOAD_FOLDER=os.getcwd()+os.sep+'app'+os.sep+'data',
+        # 'X:\\develope\\coding\\iwhale\\data',
         ALLOWED_EXTENSIONS={'txt'},
     )
 
