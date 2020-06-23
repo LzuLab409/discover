@@ -1,164 +1,305 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="static/img/lzu.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" />
+    <title>舆情监控系统</title>
+    <!-- <link rel="stylesheet" href="static/css/bootstrap.min.css" /> -->
+    <script type="text/javascript" src="static/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/echarts.min.js"></script>
+    <!-- <script type="text/javascript" src="static/js/echarts-gl.min.js"></script> -->
+    <!-- <script type="text/javascript" src="static/js/ecStat.min.js"></script> -->
+    <script type="text/javascript" src="static/js/dataTool.min.js"></script>
+    <!-- <script type="text/javascript" src="static/js/china.js"></script> -->
+    <!-- <script type="text/javascript" src="static/js/world.js"></script> -->
+    <!-- <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=toxmyaa0dGlG1pEp4MyCOw9jk0gGWGf0"></script> -->
+    <!-- <script type="text/javascript" src="static/js/bmap.min.js"></script> -->
+    
+    <script src="static/js/flexible.js"></script>
+</head>
+<body>
+    <header>
+        <h1>兰州大学智能计算中心IPV6舆论监控</h1>
+        <div class="showtime"></div>
+        <script>
+            var t = null;
+            t = setTimeout(time, 1000); //开始运行
+            function time() {
+              clearTimeout(t); //清除定时器
+              dt = new Date();
+              var y = dt.getFullYear();
+              var mt = dt.getMonth() + 1;
+              var day = dt.getDate();
+              var h = dt.getHours(); //获取时
+              var m = dt.getMinutes(); //获取分
+              var s = dt.getSeconds(); //获取秒
+              document.querySelector(".showtime").innerHTML =
+                y +
+                "年" +
+                mt +
+                "月" +
+                day +
+                "日" +
+                h +
+                "时" +
+                m +
+                "分" +
+                s +
+                "秒";
+              t = setTimeout(time, 1000); //设定定时器，循环运行
+            }
 
-<html>
-	<head>
-		<link rel="icon" href="static/img/lzu.ico">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>舆情监控系统</title>
-		<link rel="stylesheet" type="text/css" href="static/css/app.css" />
-		<script type="text/javascript" src="static/css/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript" src="static/css/jquery.form.js"></script>
-		<script>
-			var index = 0;
-			var imagePath = new Array();
-			//设置算法
-			function set1() {
-				$(".dropbtn").text($(".algorithm1").text());
-				//$(".dropdown-content").css("visibility","hidden");
-			}
-			function set2() {
-				$(".dropbtn").text($(".algorithm2").text());
-			}
-			//获取结果
-			function getresult() {
-				var algorithm=$(".dropbtn").text()
-				var filename=$("#filename").text()
-				$.ajax({
-					type:"POST",
-					url:"/submit",
-					data:{algorithm:algorithm,filename:filename},
-					dataType:"JSON",
-					success:function(result){
-						alert(result.msg)
-						//图片位置列表 result.imgPath
-						imagePath = result.imgPath;
-						$(".previous_next").css("display","block");
-						$("#show").html("<img src=\""+imagePath[index]+"\" style='vertical-align: middle;position: absolute;width: 640px;height: 450px;\n" +
-								"            top:50%; \n" +
-								"            left:50%;\n" +
-								"            transform: translate(-50%,-50%);" +
-								"            '>")
-					},
-					error:function(result){
-						alert(result.msg)
-					}
-				});
-			}
-			function start() {
-				$("#bt_div").css("visibility","hidden");
-				$("#re_div").css("display","block");
-				getresult();
-			}
+            var ref1 = setInterval(function(){
+                $("#number1").text(Math.floor(Math.random()*2000+1000))
+            },5000);
 
-			function saveReport(){
-				$("#uploadForm").ajaxSubmit(function(result){
-					alert(result.msg)
-				});
-				return false
-			}
-			function showfilename() {
-				$("#filename").text($("#upbtn").val())
-			}
+            var ref2 = setInterval(function(){
+                $("#number2").text(Math.floor(Math.random()*20000+10000))
+            },4000);
+          </script>
+    </header>
+    <!--页面主体-->
+    <section class="mainbox">
+        <!--left-->
+        <div class="column">
+            <div class="panel">
+                <h2>本周访问量</h2>
+                <div class="chart" id="first"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="panel">
+                <h2>流量变化</h2>
+                <div class="chart" id="second"></div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <!--middle-->
+        <div class="column">
+            <!--上部模块-->
+            <div class="top_main">
+                <div class="navigation">
+                    <ul>
+                        <li onclick="select_summary()">概述</li>
+                        <li onclick="select_functions()">功能</li>
+                    </ul>
+                </div>
+                <div class="select_func">
+                    <div class="functions">
+                        <ul>
+                            <li><div class="awesome" onclick="select_algorithm()">选择算法</div></li>
+                            <li>
+                                <input type="file" class="file" id="myfile"/>
+                                <div class="awesome" onclick="upload_data()" id = "updata">上传数据</div>
+                            </li>
+                            <li><div class="awesome" onclick="select_nodes()">选择节点</div></li>
+                            <li><div class="awesome" onclick="a()" id="start">开始!!!</div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="select_sumy">
+                    <div class="summary_number">
+                        <ul>
+                            <li id="number1">1234</li>
+                            <li id="number2">213123</li>
+                        </ul>
+                    </div>
+                    <div class="summary_text">
+                        <ul>
+                            <li>节点个数</li>
+                            <li>活跃人数</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="net">
+                <div class="bg1"></div>
+                <div class="bg2"></div>
+                <div class="bg3"></div>
+                <!--拓扑图-->
+                <div class="result-div" id = "showresult"></div>
+            </div>
+            
+        </div>
+        <!--right-->
+        <div class="column">
+            <div class="panel">
+                <h2>地区分布</h2>
+                <div class="chart" id="third"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="panel">
+                <h2>职业分布</h2>
+                <div class="chart" id="fourth"></div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </section>
+    <script src="static/js/index.js"></script>
+    <script src="static/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/sweetalert.css" />
+    <!-- <script src="static/js/sweetalert2.all.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/sweetalert2.css" /> -->
+    <script type="text/javascript">
+        function select_summary(){
+            $(".select_func").css("display","none");
+            $(".select_sumy").css("display","block");
+        }
+        function select_functions(){
+            $(".select_sumy").css("display","none");
+            $(".select_func").css("display","block");
+        }
 
-			//显示下一张
-			function next_pic() {
-				if (index == imagePath.length-1) {
-					alert("已经是最后一张了！")
-					return
-				}
-				else {
-					index = index + 1
-					$("#show").html("<img src=\"" + imagePath[index] + "\" style='vertical-align: middle;position: absolute;width: 640px;height: 450px;\n" +
-							"            top:50%; \n" +
-							"            left:50%;\n" +
-							"            transform: translate(-50%,-50%);" +
-							"            '>")
-				}
-			}
+        //---按钮功能实现
+        function select_algorithm(){
+            swal({
+                title: "选择算法",
+                //icon: "info",
+                buttons: {
+                    button1: {
+                        text: "ICM",
+                        value: "ICM",
+                        
+                    },
+                    button2: {
+                        text: "SVM",
+                        value: "SVM"
+                    }
+                },
+              });
+        }
+        //上传文件
+        function upload_data(){
+            $(".file").trigger('click')
+        }
+        $(".file").change(function(){
+            if($(".file").val() != ""){
+                var url = "/uploadData"
+                var filename = $("#myfile")[0].files[0].name;
+                var formData = new FormData();
+                formData.append('name', filename); 
+                formData.append('file', $("#myfile")[0].files[0]);
+                console.log(formData);
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: formData,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    //enctype="multipart/form-data",
+                    headers: {"Content-Type":"form-data"},
+                    async: true,
+                    success: function(result){
+                        console.log("OK client side");
+                        console.log(result.Response);
+                        swal({
+                            icon: "success",
+                            title: "上传成功！"
+                        })
+                    }
+                });
+            }
+        });
 
-			//显示上一张
-			function previous_pic() {
-				if (index == 0) {
-					alert("已经是第一张了！")
-					return
-				}
-				else {
-					index = index - 1
-					$("#show").html("<img src=\"" + imagePath[index] + "\" style='vertical-align: middle;position: absolute;width: 640px;height: 450px;\n" +
-							"            top:50%; \n" +
-							"            left:50%;\n" +
-							"            transform: translate(-50%,-50%);" +
-							"            '>")
-				}
-			}
-		</script>
-	</head>
-	
-	<body>
-		<header id="header">
-			<h3 class="header-title">校园IPv6网络舆情监控系统</h3>
-		</header>
-		<footer id="footer"></footer>
-		<div id="container">
-			<div id="flexCon">
-				<div class="flex-row">
-					<div class="flex-cell flex-cell-l">
-						<div class="chart-wrapper">
-							<h1 class="chart-title">选项</h1>
-							<div class="chart-div">
-								<div class="options-div">
-									<div class="dropdown">
-										<button class="dropbtn">选择处理算法</button>
-										<div class="dropdown-content">
-											<a class="algorithm1" onclick="set1()">ICM</a>
-											<!--<a class="algorithm2" onclick="set2()">SVM</a>-->
-										</div>
-									</div>
-								</div>
-								<div class="options-div">
-									<div style="height: 100%">
-										<form style="height: 100%" id="uploadForm" method = "POST" action="/uploadData" enctype = "multipart/form-data" onsubmit="return saveReport()">
-											<!-- <a type="button" id="upbtn" href="javascript:;" class="file" onchange="upload()">选择文件
-												<input type="file" id="myfile">
-											</a> -->
-											<div style="height: 70%;">
-												<div class="a-upload">
-													<div id="filename">选择文件</div>
-													<input type="file" name="file" id="upbtn" class="a-upload" onchange="showfilename()"/>
-												</div>
-											</div>
-											<div style="height: 30%;">
-												<input type="submit" class="bt" value="上传数据"/>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="flex-cell flex-cell-r">
-						<div class="chart-wrapper">
-							<h1 class="chart-title">数据可视化</h1>
-							<div class="chart-div chart-done" id="showresult">
-								<div class="options-div" id="show" style="height: 80%;line-height: 550px;text-align: center;">
-									<div class="options-div" id="bt_div" style="height: 100%;line-height: 550px;text-align: center;">
-										<button class="bt" onclick="start()" style="left: 0px !important;">开始</button>
-									</div>
-								</div>
-								<div class="previous_next">
-									<button class="bt" style="left: 0% ;top: 20px" onclick="previous_pic()">
-										上一张
-									</button>
-									<button class="bt" style="left: 2%;top: 20px" onclick="next_pic()">
-										下一张
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+        //选择节点
+        function select_nodes(){
+            swal({
+                title: '请选择起始节点',
+                text: '注：节点间逗号分隔！',
+                content: "input",
+                button: {
+                  confirm: 'true',
+                },
+              })
+              .then(name => {
+                if (!name) {
+                    swal({
+                        icon: "warning",
+                        title: "节点为空！" 
+                    })
+                };
+                console.log(name)
+              })
+        }
+
+        //开始传播算法并展示过程
+        //延迟函数
+        var index=1;
+        function start(){
+            if(index<=3){
+            var dom = document.getElementById("showresult");
+            var myChart = echarts.init(dom);
+            option = null;
+            myChart.hideLoading();
+            var path = 'static/data/data'+index+'.xml'
+            console.log(path)
+            $.get(path, function (xml) {
+                myChart.hideLoading();
+                var graph = echarts.dataTool.gexf.parse(xml);
+                var categories = [];
+                categories[0] = '未传播点'
+                categories[1] = '传播点'
+                graph.nodes.forEach(function (node) {
+                    node.itemStyle = null;
+                    node.symbolSize = 10;
+                    node.value = node.symbolSize;
+                    node.category = node.attributes.modularity_class;
+                    node.x = node.y = null;
+                    node.draggable = true;
+                });
+                option = {
+                    color:['#44f82c','#ff0404'],
+                    title: {
+                        text: 'IPV6网络拓扑图',
+                        subtext: '',
+                        top: 'bottom',
+                        left: 'right',
+                        textStyle:{color: "#fff"}
+                    },
+                    tooltip: {},
+                    animation: true,
+                    series : [
+                        {
+                            name: 'IPV6',
+                            type: 'graph',
+                            layout: 'force',
+                            data: graph.nodes,
+                            links: graph.links,
+                            categories: categories,
+                            //focusNodeAdjacency : true,
+                            roam: 'scale',
+                            label: {
+                                position: 'right'
+                            },
+                            force: {
+                                repulsion: 50
+                            }
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+                window.addEventListener('resize',function(){
+                    myChart.resize();
+                })
+            }, 'xml');
+            if (option && typeof option === "object") {
+                myChart.setOption(option,true);
+            }
+            index++;
+        }
+        else{
+            index=1
+            clearInterval(ll);
+            //ll = setInterval(start,3000);
+        }
+        }
+        var ll = "";
+        function a(){
+            ll = setInterval(start,2000);
+        }
+    </script>
+</body>
 </html>
