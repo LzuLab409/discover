@@ -22,7 +22,7 @@
 </head>
 <body>
     <header>
-        <h1>兰州大学智能计算中心IPV6舆论监控</h1>
+        <h1>智能计算中心IPV6网络舆论监控平台</h1>
         <div class="showtime"></div>
         <script>
             var t = null;
@@ -153,6 +153,7 @@
         }
 
         //---按钮功能实现
+        var algorithm = "ICM"
         function select_algorithm(){
             swal({
                 title: "选择算法",
@@ -168,20 +169,24 @@
                         value: "SVM"
                     }
                 },
-              });
+              })
+              .then(value => {
+                    algorithm = value
+              })
+              ;
         }
         //上传文件
+        var filename = ""
         function upload_data(){
             $(".file").trigger('click')
         }
         $(".file").change(function(){
             if($(".file").val() != ""){
                 var url = "/uploadData"
-                var filename = $("#myfile")[0].files[0].name;
+                filename = $("#myfile")[0].files[0].name;
                 var formData = new FormData();
                 formData.append('name', filename); 
                 formData.append('file', $("#myfile")[0].files[0]);
-                console.log(formData);
                 $.ajax({
                     type: 'POST',
                     url: url,
@@ -189,7 +194,6 @@
                     dataType: 'json',
                     processData: false,
                     contentType: false,
-                    //enctype="multipart/form-data",
                     headers: {"Content-Type":"form-data"},
                     async: true,
                     success: function(result){
@@ -205,6 +209,7 @@
         });
 
         //选择节点
+        var nodes = ""
         function select_nodes(){
             swal({
                 title: '请选择起始节点',
@@ -220,8 +225,10 @@
                         icon: "warning",
                         title: "节点为空！" 
                     })
-                };
-                console.log(name)
+                }
+                else{
+                    nodes=name
+                }
               })
         }
 
@@ -229,13 +236,31 @@
         //延迟函数
         var index=1;
         function start(){
+            //上传各种信息
+            /*
+            $.ajax({
+                type:"POST",
+                url:"/submit",
+                data:{algorithm:algorithm,filename:filename,nodes:nodes},
+                dataType:"JSON",
+                success:function(result){
+                    alert(result.msg)
+                    //此处可以返回生成的数据文件个数以及路径规则
+                },
+                error:function(result){
+                    alert(result.msg)
+                }
+            });
+            */
+            console.log(filename+algorithm+nodes)
+            //显示传播过程
             if(index<=3){
             var dom = document.getElementById("showresult");
             var myChart = echarts.init(dom);
             option = null;
             myChart.hideLoading();
             var path = 'static/data/data'+index+'.xml'
-            console.log(path)
+            //console.log(path)
             $.get(path, function (xml) {
                 myChart.hideLoading();
                 var graph = echarts.dataTool.gexf.parse(xml);
@@ -293,7 +318,6 @@
         else{
             index=1
             clearInterval(ll);
-            //ll = setInterval(start,3000);
         }
         }
         var ll = "";
