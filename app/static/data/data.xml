@@ -7,7 +7,7 @@
     <nodes>
       <node id="0" label="Myriel">
         <attvalues>
-          <attvalue for="modularity_class" value="0"></attvalue>
+          <attvalue for="modularity_class" value="1"></attvalue>
         </attvalues>
       </node>
       <node id="1" label="Napoleon">

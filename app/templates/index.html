@@ -153,20 +153,20 @@
         }
 
         //---按钮功能实现
-        var algorithm = "ICM"
+        var algorithm = "LT"
         function select_algorithm(){
             swal({
                 title: "选择算法",
                 //icon: "info",
                 buttons: {
                     button1: {
-                        text: "ICM",
-                        value: "ICM",
+                        text: "线性阈值模型",
+                        value: "LT",
                         
                     },
                     button2: {
-                        text: "SVM",
-                        value: "SVM"
+                        text: "独立级联模型",
+                        value: "IC"
                     }
                 },
               })
@@ -190,18 +190,24 @@
                 $.ajax({
                     type: 'POST',
                     url: url,
-                    data: formData,
+                    data:formData,
                     dataType: 'json',
                     processData: false,
                     contentType: false,
-                    headers: {"Content-Type":"form-data"},
-                    async: true,
+                    // headers: {"Content-Type":"form-data"},
+                    // async: true,
                     success: function(result){
                         console.log("OK client side");
                         console.log(result.Response);
                         swal({
                             icon: "success",
                             title: "上传成功！"
+                        })
+                    },
+                    error: function(result){
+                        swal({
+                            icon: "error",
+                            title: "上传失败！"
                         })
                     }
                 });
@@ -234,10 +240,8 @@
 
         //开始传播算法并展示过程
         //延迟函数
-        var index=1;
+        var index=3;
         function start(){
-            //上传各种信息
-            /*
             $.ajax({
                 type:"POST",
                 url:"/submit",
@@ -251,7 +255,6 @@
                     alert(result.msg)
                 }
             });
-            */
             console.log(filename+algorithm+nodes)
             //显示传播过程
             if(index<=3){
@@ -259,7 +262,7 @@
             var myChart = echarts.init(dom);
             option = null;
             myChart.hideLoading();
-            var path = 'static/data/data'+index+'.xml'
+            var path = 'static/data/data.xml'
             //console.log(path)
             $.get(path, function (xml) {
                 myChart.hideLoading();

@@ -13,36 +13,35 @@ def func(filePath):
     # path = r'X:\develope\coding\iwhale\discover\app\network\karate-int.txt'
     path=filePath
     G = nx.read_edgelist(path, nodetype=int)
-# nodeNum1 = len(G.nodes())
-# if min(G.node())!=0:
-#     for i in range(1,nodeNum1+1):
-#         G.node[i] = i-1
-# print G.node()
+
     nodeNum = len(G.nodes())
     print (nodeNum)
-    colors = zeros((nodeNum))
+    colors = zeros((nodeNum)) #值为0，大小为节点数的一维数组
+
     # plt.ion()
     for i in range(nodeNum):
-        G.node[i]['label'] = i
-    resultTable=zeros([nodeNum,5])
+        G.node[i]['label'] = i #G的标签值为节点值 
+    resultTable=zeros([nodeNum,5]) #值为0，大小为node*5的五维数组
 
     for i in range(resultTable.shape[0]):
         resultTable[i,0] =  G.node[i]['label']
     k = 5
-
-    nodeDegIdsMat = zeros((nodeNum,2))#matrix of nodes ids and relative degree values
+    print('G.node:{}'.format(G.node))
+    #此处可以优化
+    nodeDegIdsMat = zeros((nodeNum,2))#matrix of nodes ids and relative degree values 值为0，大小为node*2的二维数组
     for i in range(nodeDegIdsMat.shape[0]):
         nodeDegIdsMat[i,0] = i       # the first column is node ids
         nodeDegIdsMat[i,1] = nx.degree(G,i)     #the second column is nodes degree
 
-    orderDegree=nodeDegIdsMat[np.lexsort(-nodeDegIdsMat.T)]
+    print('nodeDegIdsMat:{}'.format(nodeDegIdsMat))
+    orderDegree=nodeDegIdsMat[np.lexsort(-nodeDegIdsMat.T)] #此操作看不懂，但操作后还是个node*2的二维数组，里面值的顺序按照度的大小进行了降序排列
+    print('orderDegree:{}'.format(orderDegree))
 
-    tempInput =0
-    tempInput = orderDegree[0:k,0]
-# print tempInput
+    tempInput = orderDegree[0:k,0]  #取前5个度最大的节点，值为节点编号
+    print(tempInput)
 
     threshold = 0.2
-    activeOrderIndex = np.repeat(None, nodeNum, axis=0) #保存激活节点的内部ID
+    activeOrderIndex = np.repeat(None, nodeNum, axis=0) #保存激活节点的内部ID 长度为node，值为None的一维数组
     activeOrderLabel = np.repeat(None, nodeNum, axis=0) #保存激活节点的label
 
     for i in range(k):
@@ -57,9 +56,9 @@ def func(filePath):
 
     i =0
     orderLength = k
-    #index=1
-    z = -1
     count=1
+    colorList=[]
+
     while activeOrderIndex[i] !=None:
         nodeID = activeOrderIndex[i]
         for j in range(nodeNum):
@@ -76,27 +75,16 @@ def func(filePath):
                     resT4=resultTable[nodeID,4]
                     resultTable[j,4]=resT4+1.0
         nx.draw_networkx(G, pos= nx.kamada_kawai_layout(G), node_color=colors)
-        #plt.show()
-        #name="demo{}.jps".format(index)
-        count+=1
-        #plt.savefig("static/img/%d.jpg"%(i+1))
-        #current_path=os.path.join("static/img/demo{}.png".format(index))
-        #print(str(current_path))
-        #plt.savefig(current_path)
-        
-        if z != -2:
-            z += 1 
-            #plt.pause(1)
-            #plt.close()
-        #plt.savefig("app/static/img/k.jpg")
-        current_path=os.getcwd()
-        save_path=current_path+os.sep+'app'+os.sep+'data'+os.sep+'%d.jpg'%(z+1)
+        colorList.append(colors)
+        # plt.show()
+        save_path=os.getcwd()+os.sep+'app'+os.sep+'static'+os.sep+'data'+os.sep+'img'+os.sep+'%d.jpg'%(count)
         plt.savefig(save_path)
+        count+=1
+
         if i+1 <=orderLength:
             print (activeOrderLabel[i])
             print (activeOrderLabel[i+1:orderLength])
         i = i+1
-        #return demo,
     print ('Label State activeNode Weight time')
     print (resultTable)
     print (threshold)
@@ -104,8 +92,12 @@ def func(filePath):
     Activerate=float(orderLength)/float(nodeNum)
     print ('The actived vertex number is:',orderLength,',actived rate is :',format(Activerate*100,'.2f'),'%\n')
     print ('The actived node sequence in order is:',activeOrderLabel[0:orderLength])
-    return count
-# if __name__ =='__main__':
-#     func()
-#nx.draw_networkx(G, node_color=colors)
-#plt.show()
+    print(colorList)
+    return count,colorList,G
+if __name__ =='__main__':
+    path = r'X:\develope\coding\iwhale\discover\app\network\karate-int.txt'
+    count,colorList,G=func(path)
+
+    for i in range(len(colorList)):
+        nx.draw_networkx(G, pos= nx.kamada_kawai_layout(G), node_color=colorList[i])
+        plt.show()

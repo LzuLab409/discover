@@ -16,69 +16,162 @@ from flask import(
     Blueprint,flash,g,redirect,render_template,request,session,url_for,jsonify,current_app as app
 )
 from werkzeug.utils import secure_filename
+import logging
+from nose.tools import *
+from networkx import *
+from linear_threshold import *
+import time
+import numpy as np
 
 bp=Blueprint('visual',__name__)
 
 @bp.route('/')
 def data_visual():
-    print('test:{}'.format(os.path.dirname('static/img/bg.png')))
-    index=1
-    current_path=os.path.join('static/img/demo{}'.format(index))
-    print(current_path)
     return render_template('index.html')
 
-# @bp.route('/getAlgorithm')
-# def get_algorithm():
-#     algorithm=['ICM算法','算法二','算法三','算法四']
-#     return jsonify(algorithm)
-
 def allowed_file(filename):
+    '''check the type of upload file
+    '''
     return '.' in filename and filename.rsplit('.',1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+def excuteLT(sweed,file):
+    '''the function used for running LT model
+    :param sweed: 影响力传播种子节点
+    :param file: 网络节点文件
+    :return G: graph
+    :return layers:激活的节点
+    '''
+    if ',' in sweed:
+        sweed=sweed.split(',')
+    else:
+        sweed=sweed.split('，')
+    sweed=list(map(int,sweed))
+    start=time.clock()
+    datasets=[]
+    f=open(file,"r")        #读取文件数据（边的数据）
+    data=f.read()
+    rows=data.split('\n')
+    for row in rows:
+      split_row=row.split('\t')
+      name=(int(split_row[0]),int(split_row[1]))
+      datasets.append(name)            #将边的数据以元组的形式存放到列表中
+
+    G=networkx.DiGraph()               #建立一个空的有向图G
+    G.add_edges_from(datasets)         #向有向图G中添加边的数据列表
+    layers=linear_threshold(G,sweed,5)     #调用LT线性阈值算法，返回子节点集和该子节点集的最大激活节点集
+    del layers[-1]
+    length=0
+    for i in range(len(layers)):
+        length =length+len(layers[i])
+    lengths=length-len(layers[0])       #获得子节点的激活节点的个数（长度）
+    end=time.clock()
+    #测试数据输出结果
+    print(layers)  #[[25], [33, 3, 6, 8, 55, 80, 50, 19, 54, 23, 75, 28, 29, 30, 35]]
+    print(lengths) #15
+    print('Running time: %s Seconds'%(end-start))  #输出代码运行时间
+    return G,layers
+
+def generateXml(G,layers):
+    '''generat the relation of the graph
+    :param G: graph
+    :param layers: 激活的节点
+    '''
+    file=os.getcwd()+os.sep+'app'+os.sep+'static'+os.sep+'data'+os.sep+'xml'+os.sep+'data.xml'
+    # for i in range(len(layers)):
+    #     print(layers[i])
+    #     for j in range(len(layers[i])):
+    #         G.nodes[j]['club']=i
+
+    # node_type=list(G.nodes())
+    # node_type=list(map(str,node_type))
+    # print('layers:{}'.format(layers))
+    # print(type(node_type))
+    # print('node_type:{}'.format(node_type))
+    # label=[]
+    # for i in range(len(layers)):
+    #     label.append(chr(97+i))
+    #     for j in range(len(layers[i])):
+    #         for index in range(len(node_type)):
+    #             if node_type[index]==str(layers[i][j]):
+    #                 node_type[index]=chr(97+i)
+
+    # print('last node_type:{}'.format(node_type))
+    # for i in range(len(node_type)):
+    #     if node_type[i] not in label:
+    #         node_type[i]='z'
+
+    # print(node_type)
+    # print(type(node_type))
+    
+    print(layers)
+    attrs={}
+    for i in range(len(layers)):
+        for j in range(len(layers[i])):
+            attrs[layers[i][j]]={'type':i}
+    print(attrs)
+    networkx.set_node_attributes(G,attrs)
+    networkx.write_gexf(G,file)
+    pass
 
 @bp.route('/uploadData',methods=['POST'])
 def upload_data():
-    print('load data')
+    '''file upload
+    :param request: request里应包含所上传的文件流
+    '''
+    result={'staus':True,'msg':'文件上传成功'}
     if 'file' not in request.files:
         flash('no file part')
         return redirect(request.url)
     file=request.files['file']
-
     if file.filename=='':
         flash('no selected file')
         return redirect(request.url)
-    
-    result={'staus':True,'msg':'文件上传成功'}
+    # file=request.files.get('file')
+    # print(file.name)
     if file and allowed_file(file.filename):
         filename=secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-        return jsonify(result) 
+        try:
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            return jsonify(result) 
+        except IOError as e:
+            result['status']=False
+            result['msg']='保存文件出错'
+            return jsonify(result)
     else:
         result['status']=False
         result['msg']='所上传文件类型不符合要求'
         return jsonify(result)
+    return jsonify(result)
 
 @bp.route('/submit',methods=['POST'])
 def submit():
-    print('submit...')
-    result={'msg':'sucess','imgPath':''}
+    '''execute the selected algorithm
+    :param algorithm: 算法
+    :param seedNode: 种子节点集
+    '''
+    result={'status':'True','msg':'sucess'}
     try:
         algorithm=request.form['algorithm']
         filename=request.form['filename']
-        file=filename.split('\\')[2]
-        filePath=os.path.join(app.config['UPLOAD_FOLDER'],file)
-        print(filePath)
-        filePath=r'%s'%filePath
-        print(algorithm)
-        if algorithm == 'ICM':
-            from ICM import func
-            count=func(filePath)
-            imgList=[]
-            for i in range(1,count+1):
-                imgList.append('static/img/{}.jpg'.format(i))
-            result['msg']='run sucess'
+        nodes=request.form['nodes']
+        if not bool(algorithm) or not bool(filename) or not bool(nodes):
+            result['status']=False
+            result['msg']='缺少必要参数'
         else:
-            result['msg']='error: 不支持所选择的算法'
-        result['imgPath']=imgList
+            filePath=os.path.join(app.config['UPLOAD_FOLDER'],filename)
+            filePath=r'%s'%filePath
+            if algorithm =='LT':
+                logging.info('LT Model starting...')
+                G,layers=excuteLT(nodes,filePath)
+                try:
+                    generateXml(G,layers)
+                except IOError as e:
+                    result['status']=False
+                    result['msg']=e                    
+            elif algorithm == 'IC':
+                pass
+            else:
+                result['msg']='error: 不支持所选择的算法'
         return jsonify(result)
     except KeyError:
         result['msg']='get key error'
