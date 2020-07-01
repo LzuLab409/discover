@@ -72,43 +72,18 @@ def excuteLT(sweed,file):
     return G,layers
 
 def generateXml(G,layers):
-    '''generat the relation of the graph
+    '''generat the relation of the graph 弃用该方法
     :param G: graph
     :param layers: 激活的节点
     '''
     file=os.getcwd()+os.sep+'app'+os.sep+'static'+os.sep+'data'+os.sep+'xml'+os.sep+'data.xml'
-    # for i in range(len(layers)):
-    #     print(layers[i])
-    #     for j in range(len(layers[i])):
-    #         G.nodes[j]['club']=i
-
-    # node_type=list(G.nodes())
-    # node_type=list(map(str,node_type))
-    # print('layers:{}'.format(layers))
-    # print(type(node_type))
-    # print('node_type:{}'.format(node_type))
-    # label=[]
-    # for i in range(len(layers)):
-    #     label.append(chr(97+i))
-    #     for j in range(len(layers[i])):
-    #         for index in range(len(node_type)):
-    #             if node_type[index]==str(layers[i][j]):
-    #                 node_type[index]=chr(97+i)
-
-    # print('last node_type:{}'.format(node_type))
-    # for i in range(len(node_type)):
-    #     if node_type[i] not in label:
-    #         node_type[i]='z'
-
-    # print(node_type)
-    # print(type(node_type))
-    
     print(layers)
     attrs={}
     for i in range(len(layers)):
         for j in range(len(layers[i])):
-            attrs[layers[i][j]]={'type':i}
+            attrs['modularity_class'][layers[i][j]]={'Modularity Class':i}
     print(attrs)
+    networkx.set_node_attributes(G,)
     networkx.set_node_attributes(G,attrs)
     networkx.write_gexf(G,file)
     pass
@@ -163,11 +138,16 @@ def submit():
             if algorithm =='LT':
                 logging.info('LT Model starting...')
                 G,layers=excuteLT(nodes,filePath)
-                try:
-                    generateXml(G,layers)
-                except IOError as e:
-                    result['status']=False
-                    result['msg']=e                    
+                if len(layers)==0:
+                    result['msg']='选择的种子节点未激活网络中任何其他节点'
+                else:
+                    try:
+                        import toXml as toXml
+                        toXml.generateXml(G,layers)
+                        result['msg']='选择的种子节点所激活网络中的其他节点已用不同类别标识'
+                    except IOError as e:
+                        result['status']=False
+                        result['msg']=e
             elif algorithm == 'IC':
                 pass
             else:
