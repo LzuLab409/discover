@@ -234,8 +234,31 @@
                 }
                 else{
                     nodes=name
+                    $.ajax({
+                        type:"POST",
+                        url:"/submit",
+                        data:{algorithm:algorithm,filename:filename,nodes:nodes},
+                        dataType:"JSON",
+                        success:function(result){
+                            typenum=result.type
+                            console.log(typenum)
+                            swal({
+                                icon: "success",
+                                title: result.msg
+                            })
+                            //此处可以返回生成的数据文件个数以及路径规则
+                        },
+                        error:function(result){
+                            swal({
+                                icon: "warning",
+                                title: result.msg
+                            })
+                        }
+                    });
+                    console.log(filename+algorithm+nodes)
                 }
               })
+              
         }
 
         //开始传播算法并展示过程
@@ -243,31 +266,7 @@
         //var index=3;
         var typenum = 0
         function start(){
-            $.ajaxSettings.async = false;
-            $.ajax({
-                type:"POST",
-                url:"/submit",
-                data:{algorithm:algorithm,filename:filename,nodes:nodes},
-                dataType:"JSON",
-                success:function(result){
-                    typenum=result.type
-                    console.log(typenum)
-                    swal({
-                        icon: "success",
-                        title: result.msg
-                    })
-                    //此处可以返回生成的数据文件个数以及路径规则
-                },
-                error:function(result){
-                    swal({
-                        icon: "warning",
-                        title: result.msg
-                    })
-                }
-            });
-            $.ajaxSettings.async = true;
-
-            console.log(filename+algorithm+nodes)
+            
 
             //显示传播过程
             //if(index<=3){
@@ -277,12 +276,11 @@
             myChart.hideLoading();
             var path = 'static/data/xml/data.xml'
             //console.log(path)
-            $.ajaxSettings.async = false;
             $.get(path, function (xml) {
                 myChart.hideLoading();
                 var graph = echarts.dataTool.gexf.parse(xml);
                 var categories = [];
-                for (var i = 0; i < typenum; i++) {
+                for (var i = 0; i < typenum+1; i++) {
                     categories[i] = {
                         name: '类目' + i
                     };
@@ -330,7 +328,6 @@
                     myChart.resize();
                 })
             }, 'xml');
-            $.ajaxSettings.async = true;
             if (option && typeof option === "object") {
                 myChart.setOption(option,true);
             }
