@@ -9,7 +9,6 @@
         var graph = echarts.dataTool.gexf.parse(xml);
         var categories = [];
         categories[0] = '未传播点'
-        categories[1] = '传播点'
         graph.nodes.forEach(function (node) {
             node.itemStyle = null;
             node.symbolSize = 10;
@@ -19,7 +18,7 @@
             node.draggable = true;
            });
         option = {
-            color:['#44f82c','#ff0404'],
+            color:['#44f82c','#ff0404','#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
             title: {
                 text: 'IPV6网络拓扑图',
                 subtext: '',

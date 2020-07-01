@@ -240,22 +240,35 @@
 
         //开始传播算法并展示过程
         //延迟函数
-        var index=3;
+        //var index=3;
+        var typenum = 0
         function start(){
+            $.ajaxSettings.async = false;
             $.ajax({
                 type:"POST",
                 url:"/submit",
                 data:{algorithm:algorithm,filename:filename,nodes:nodes},
                 dataType:"JSON",
                 success:function(result){
-                    alert(result.msg)
+                    typenum=result.type
+                    console.log(typenum)
+                    swal({
+                        icon: "success",
+                        title: result.msg
+                    })
                     //此处可以返回生成的数据文件个数以及路径规则
                 },
                 error:function(result){
-                    alert(result.msg)
+                    swal({
+                        icon: "warning",
+                        title: result.msg
+                    })
                 }
             });
+            $.ajaxSettings.async = true;
+
             console.log(filename+algorithm+nodes)
+
             //显示传播过程
             //if(index<=3){
             var dom = document.getElementById("showresult");
@@ -264,12 +277,16 @@
             myChart.hideLoading();
             var path = 'static/data/xml/data.xml'
             //console.log(path)
+            $.ajaxSettings.async = false;
             $.get(path, function (xml) {
                 myChart.hideLoading();
                 var graph = echarts.dataTool.gexf.parse(xml);
                 var categories = [];
-                categories[0] = '未传播点'
-                categories[1] = '传播点'
+                for (var i = 0; i < typenum; i++) {
+                    categories[i] = {
+                        name: '类目' + i
+                    };
+                }
                 graph.nodes.forEach(function (node) {
                     node.itemStyle = null;
                     node.symbolSize = 10;
@@ -279,7 +296,7 @@
                     node.draggable = true;
                 });
                 option = {
-                    color:['#44f82c','#ff0404','#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+                    color:['#44f82c','#ff0404','#FFFFFF','#c23531','#FEF68F',, '#61a0a8', "#FFDEAD",, '#91c7ae',"#FFA54F", '#ca8622', "#FF7F50",'#6e7074', '#FF00FF','#546570', '#c4ccd3','#030303'],
                     title: {
                         text: 'IPV6网络拓扑图',
                         subtext: '',
@@ -313,10 +330,10 @@
                     myChart.resize();
                 })
             }, 'xml');
+            $.ajaxSettings.async = true;
             if (option && typeof option === "object") {
                 myChart.setOption(option,true);
             }
-            index++;
         }
         /*
         else{
