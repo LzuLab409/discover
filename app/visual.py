@@ -140,6 +140,7 @@ def submit():
             if algorithm =='LT':
                 logging.info('LT Model starting...')
                 G,layers=excuteLT(nodes,filePath)
+                result['type']=len(layers)
                 if len(layers)==0:
                     result['msg']='选择的种子节点未激活网络中任何其他节点'
                 else:
