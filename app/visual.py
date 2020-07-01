@@ -46,18 +46,20 @@ def excuteLT(sweed,file):
     else:
         sweed=sweed.split('，')
     sweed=list(map(int,sweed))
-    start=time.clock()
-    datasets=[]
-    f=open(file,"r")        #读取文件数据（边的数据）
-    data=f.read()
-    rows=data.split('\n')
-    for row in rows:
-      split_row=row.split('\t')
-      name=(int(split_row[0]),int(split_row[1]))
-      datasets.append(name)            #将边的数据以元组的形式存放到列表中
 
-    G=networkx.DiGraph()               #建立一个空的有向图G
-    G.add_edges_from(datasets)         #向有向图G中添加边的数据列表
+    start=time.clock()
+    G = nx.read_edgelist(file, nodetype=int)
+    # datasets=[]
+    # f=open(file,"r")        #读取文件数据（边的数据）
+    # data=f.read()
+    # rows=data.split('\n')
+    # for row in rows:
+    #   split_row=row.split('\t')
+    #   name=(int(split_row[0]),int(split_row[1]))
+    #   datasets.append(name)            #将边的数据以元组的形式存放到列表中
+
+    # G=networkx.DiGraph()               #建立一个空的有向图G
+    # G.add_edges_from(datasets)         #向有向图G中添加边的数据列表
     layers=linear_threshold(G,sweed,5)     #调用LT线性阈值算法，返回子节点集和该子节点集的最大激活节点集
     del layers[-1]
     length=0
@@ -148,10 +150,10 @@ def submit():
                     except IOError as e:
                         result['status']=False
                         result['msg']=e
-            elif algorithm == 'IC':
-                pass
+            # elif algorithm == 'IC':
+            #     pass
             else:
-                result['msg']='error: 不支持所选择的算法'
+                result['msg']='error: 算法开发中，暂不支持所选择的算法'
         return jsonify(result)
     except KeyError:
         result['msg']='get key error'
