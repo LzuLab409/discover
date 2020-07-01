@@ -1,0 +1,4 @@
+app/data/xml/*
+app/_pycache_/*
+.vscode
+.dist

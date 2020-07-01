@@ -167,7 +167,7 @@
                     color: "rgba(255,255,255,0.6)"
                 },
                 type: 'category',
-                data: ['巴西', '印尼', '美国', '印度', '中国', '日本']
+                data: ['其他', '河南', '山东', '江苏', '广东', '甘肃']
             },
             {
                 show: true,
@@ -258,7 +258,7 @@
         },
         color: ['#00d887','#0184d5'],
         legend: {
-            data: ['邮件营销','视频广告'],
+            data: ['校内流量','校外流量'],
             textStyle: {
                 color: "rgba(255,255,255,0.7)"
             }
@@ -302,7 +302,7 @@
         ],
         series: [
             {
-                name: '邮件营销',
+                name: '校内流量',
                 type: 'line',
                 smooth: 'true',
                 data: [120, 380, 101, 134, 90, 230, 210],
@@ -333,7 +333,7 @@
                 }
             },
             {
-                name: '视频广告',
+                name: '校外流量',
                 type: 'line',
                 smooth: 'true',
                 itemStyle: {
@@ -383,9 +383,9 @@
         },
         legend: {
             right: '0',
-            top: '0',
+            top: 'center',
             orient: 'vertical',
-            data: ['学生', '老师', '记者', '医生', '其他'],
+            data: ['教学科研人员', '在站博士后', '教授等正高职', '研究生导师'],
             textStyle :{
                 color: 'rgba(255,255,255,0.7)'
             }
@@ -394,7 +394,7 @@
             {
                 name: '职业分布',
                 type: 'pie',
-                radius: [20, 100],
+                radius: [20, 80],
                 center: ['50%', '50%'],
                 roseType: 'area',
                 emphasis: {
@@ -403,11 +403,10 @@
                     }
                 },
                 data: [
-                    {value: 10, name: '学生'},
-                    {value: 16, name: '老师'},
-                    {value: 15, name: '记者'},
-                    {value: 25, name: '医生'},
-                    {value: 40, name: '其他'},
+                    {value: 2303, name: '教学科研人员'},
+                    {value: 169, name: '在站博士后'},
+                    {value: 696, name: '教授等正高职'},
+                    {value: 1845, name: '研究生导师'}
                 ]
             }
         ]
