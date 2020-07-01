@@ -381,20 +381,20 @@
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
-        legend: {
-            right: '0',
-            top: 'center',
-            orient: 'vertical',
-            data: ['教学科研人员', '在站博士后', '教授等正高职', '研究生导师'],
-            textStyle :{
-                color: 'rgba(255,255,255,0.7)'
-            }
-        },
+        // legend: {
+        //     right: '0',
+        //     top: '0',
+        //     orient: 'vertical',
+        //     data: ['教学科研人员', '在站博士后', '教授等正高职', '研究生导师'],
+        //     textStyle :{
+        //         color: 'rgba(255,255,255,0.7)'
+        //     }
+        // },
         series: [
             {
                 name: '职业分布',
                 type: 'pie',
-                radius: [20, 80],
+                radius: [40, 60],
                 center: ['50%', '50%'],
                 roseType: 'area',
                 emphasis: {
