@@ -9,310 +9,174 @@
       <attribute id="modularity_class" title="Modularity Class" type="integer"/>
     </attributes>
     <nodes>
-<<<<<<< HEAD
-      <node id="0" label="39ef:d411:ca21:7a3:ba7a:eaa6:1813:fc22">
-=======
-      <node id="0" label="70bc:73ac:f9c6:7f54:d5f4:e7d1:6b7c:5478">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="0" label="3fc0:a6c7:ebc:c684:d3dc:88c7:3cdf:cbdb">
         <attvalues>
-          <attvalue for="modularity_class" value="3"/>
+          <attvalue for="modularity_class" value="0"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="1" label="9ccf:4e7e:ec40:2351:d412:6224:a520:b519">
-=======
-      <node id="1" label="eabb:736e:9aea:4f28:eaa5:a7d7:b7de:a523">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="1" label="cd97:269f:5fd1:f898:1683:2ea9:3542:8461">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="10" label="6398:5e7:f7d5:ff80:d3fe:9125:5369:20fe">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="11" label="a799:b945:a544:72e9:73c8:559e:8130:2309">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="12" label="9d57:d1bd:d705:5bd7:7eff:9bd4:555f:d510">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="13" label="99b8:5d1a:71b6:9ace:c49e:6243:b630:b724">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="14" label="ca12:8d45:3dcc:c87f:ebbc:f1c5:7415:b259">
+        <attvalues>
+          <attvalue for="modularity_class" value="2"/>
+        </attvalues>
+      </node>
+      <node id="15" label="9f09:829a:7c67:4e2d:fd85:7ea1:88cd:bbbd">
+        <attvalues>
+          <attvalue for="modularity_class" value="2"/>
+        </attvalues>
+      </node>
+      <node id="16" label="b5af:197b:cb85:b8db:9cec:9f16:ba71:b5d1">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="17" label="732a:8454:7019:ac98:a36e:f361:acc4:254b">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="18" label="688e:1698:a0f9:aa58:f6d9:e24b:c1ce:c396">
+        <attvalues>
+          <attvalue for="modularity_class" value="2"/>
+        </attvalues>
+      </node>
+      <node id="19" label="6d03:ac8d:d624:3f83:188c:58bf:9a92:aa85">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="2" label="eaf:7db:5c4c:ad44:b514:fb97:5a31:a300">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="20" label="b9ee:e9fc:4980:30ea:175a:9cb:e9d4:4cf9">
+        <attvalues>
+          <attvalue for="modularity_class" value="2"/>
+        </attvalues>
+      </node>
+      <node id="21" label="dbce:299e:7b52:a9b7:3465:ff87:50c8:e74d">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="22" label="993b:37c4:eacd:305b:c0de:18f7:7eb8:2692">
+        <attvalues>
+          <attvalue for="modularity_class" value="2"/>
+        </attvalues>
+      </node>
+      <node id="23" label="441f:99f7:8c9d:7803:4201:14f5:18f3:9a0d">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="24" label="602a:bba:670:a7ad:ad15:5b41:76f4:5573">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="25" label="481a:ccda:cf1e:50e8:fdb0:ee99:3c5d:7e7e">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="26" label="f88:fb1e:f15f:8fdd:9012:8d2:5edd:99d6">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="27" label="593f:e333:1f7c:99b5:1059:9a5:dea3:3d96">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="28" label="58b:8b3e:a15c:2479:62a3:92e8:bce2:25c0">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="29" label="71be:d9e5:59a:12a6:8100:f573:5d68:4ec0">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="3" label="1398:ec82:fc7a:f3df:ef4f:d827:b297:252d">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="30" label="a8d0:d73d:ce35:a3c3:204a:a1ca:a5c5:547b">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="31" label="f052:4f46:4ea6:c6df:451d:174f:51f9:429a">
+        <attvalues>
+          <attvalue for="modularity_class" value="0"/>
+        </attvalues>
+      </node>
+      <node id="32" label="2bae:dbe2:6efd:688e:abd3:11b5:47cb:e81d">
         <attvalues>
           <attvalue for="modularity_class" value="1"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="10" label="a87c:7cb:3c46:944:b214:7589:51b0:cf3f">
-=======
-      <node id="10" label="abc6:d340:d403:6cf7:8a4b:69fd:8276:ebf3">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="33" label="5616:cb0b:5341:5de7:123e:e102:bf8e:c1d">
         <attvalues>
           <attvalue for="modularity_class" value="0"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="11" label="f87f:df52:9374:fa5:ab7e:be40:d880:c464">
-=======
-      <node id="11" label="e598:2f41:b437:3eab:342f:b29f:aad9:3de2">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="4"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="12" label="c372:98e4:d8c7:4965:b164:fb46:fb17:768e">
-=======
-      <node id="12" label="a3dd:f967:86a2:527d:ec17:f6ec:af43:13e3">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="13" label="9ee4:757f:d5d7:2d03:7070:2523:a65:db1e">
-=======
-      <node id="13" label="6dc5:ed02:6f1d:d9e7:9d0a:12a3:37b5:3d7f">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="14" label="b9cb:a44b:5c06:c5a4:93ce:110b:ced5:75b3">
-=======
-      <node id="14" label="c4da:30a8:48dc:b6ab:1115:82f6:f798:da19">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="15" label="b87d:2375:7ffe:60bc:330:7e1f:e7cb:8535">
-=======
-      <node id="15" label="8371:e289:67fd:f97c:9300:3bc8:274d:191f">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="16" label="1c2f:cffa:3bf5:4c31:3371:830f:10ce:458f">
-=======
-      <node id="16" label="ace2:d23b:839b:c993:eaff:48f9:c36c:e5b0">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="4" label="b1f2:c76:3a9a:7b3a:b491:c809:4429:4452">
         <attvalues>
           <attvalue for="modularity_class" value="0"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="17" label="2bcd:1d6f:63e0:3959:92c5:b667:3e08:afe9">
-=======
-      <node id="17" label="5fa0:2a99:e296:ea50:9c31:aa57:1b47:c760">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="18" label="32b:3870:3a28:3d3c:d386:6449:2364:ef89">
-=======
-      <node id="18" label="d6b:62dd:5843:b8cd:160a:245f:406:f63d">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="19" label="9433:f2a8:7604:13d8:c5b7:6a3d:3dff:e5d1">
-=======
-      <node id="19" label="6510:eefd:e0d3:e050:48e9:7354:417e:f530">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="4"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="2" label="717b:23ae:a048:d09b:ed4f:4464:3a35:692a">
-=======
-      <node id="2" label="363f:c70b:c804:3646:c435:a9d1:d5b9:6946">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="5" label="5c4f:b910:fcf4:adf2:8269:dd9c:8baf:3c07">
         <attvalues>
           <attvalue for="modularity_class" value="0"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="20" label="b3ff:e5f5:3092:c41d:6296:c793:46bc:209a">
-=======
-      <node id="20" label="8dea:d3ab:19f5:ad81:af39:1045:4e5e:9ccc">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="21" label="652f:4c36:6323:93a5:fbb:f06d:c6cf:e509">
-=======
-      <node id="21" label="dd10:b7e9:728b:dead:8e67:c3b1:e643:baff">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="22" label="edf4:63ab:34a3:f045:61bd:2096:ffb0:568">
-=======
-      <node id="22" label="dd7c:2fb3:88f:bbc2:ec20:4e02:7570:2646">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="23" label="d32a:ce06:bac3:a368:41a4:3c55:ac5c:936e">
-=======
-      <node id="23" label="134c:5852:1529:c3b4:4c1a:10ef:d3d5:62dd">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="6" label="5e3d:61b8:a2e1:4b1:9c90:3ada:9954:38b">
         <attvalues>
           <attvalue for="modularity_class" value="0"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="24" label="88f:cbcb:6144:4ec1:c19a:efd:9bc6:374d">
-=======
-      <node id="24" label="b50d:22d2:94ef:effd:935f:953:a925:7311">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="7" label="35a2:fc74:bec4:366d:abf2:617:c678:296b">
         <attvalues>
           <attvalue for="modularity_class" value="0"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="25" label="be2f:7d02:2b54:3b11:6f9e:6dd2:3303:8a09">
-=======
-      <node id="25" label="7c20:54ae:25f8:d421:381:bd74:a672:725b">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="8" label="b7ae:12c:b25b:b4f0:fd91:583f:9b05:d3b9">
         <attvalues>
           <attvalue for="modularity_class" value="0"/>
         </attvalues>
       </node>
-<<<<<<< HEAD
-      <node id="26" label="966d:d615:5cb0:5528:863:76c2:7c81:72ad">
-=======
-      <node id="26" label="f07e:a1e1:83a0:c6a8:55b8:cfc1:fa0e:cf13">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
+      <node id="9" label="7c62:edbf:5fc9:8eed:1a0d:bed3:d7ed:9fa">
         <attvalues>
           <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="27" label="7ae7:d6cb:34a0:54bb:bfd1:180a:a3c5:74c2">
-=======
-      <node id="27" label="6f28:d5a4:be3a:e25d:aa53:14bb:c38:93b8">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="28" label="80e5:57cb:d62e:9f75:c0b2:ba3e:fbd5:649a">
-=======
-      <node id="28" label="546c:ab86:dff:4453:60b8:5445:a569:3a67">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="29" label="dc71:48e7:5fb7:1b41:e979:9abc:396f:ce94">
-=======
-      <node id="29" label="7c47:97ca:94d3:92a8:ad4f:89e1:697e:c4e5">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="3" label="87cb:881a:bfe4:f2b1:2799:3ea9:3504:79eb">
-=======
-      <node id="3" label="dd52:6641:147a:bab6:28c2:1887:5c4d:95dc">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="1"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="30" label="b741:7c7f:3c11:ecfd:6227:f7ed:a329:c48">
-=======
-      <node id="30" label="3559:d5a:8e88:93f7:1cd9:5e0e:5088:5657">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="31" label="3d56:8545:49c3:90a:b2d9:dafc:6ae:6d9b">
-=======
-      <node id="31" label="789:d130:293d:adfe:790c:fba9:938f:251f">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="32" label="7149:2c61:572a:ec9c:dfff:a99b:3e24:6ce5">
-=======
-      <node id="32" label="244:f9c8:7131:d96:a01b:e213:5a49:5fd1">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="1"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="33" label="c33e:9120:a933:4e4b:71bc:1b77:90d4:b339">
-=======
-      <node id="33" label="e97f:a723:fb70:4281:dfb4:2c3b:433e:9331">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="4" label="4e11:5a9d:3c93:507a:7378:dfab:9cfb:9c0e">
-=======
-      <node id="4" label="5e43:306c:bd79:2773:1b3d:16da:8391:a943">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="5" label="db90:3ea0:88c5:cae4:3974:a005:41fa:5e11">
-=======
-      <node id="5" label="6092:8524:fedd:f17a:7ed1:1453:b07a:260e">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="6" label="4224:98f7:c80b:d669:8cb5:bbee:9aa3:cf29">
-=======
-      <node id="6" label="667c:b5c0:846:eee0:c4ea:4500:b1dd:6653">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="7" label="2dae:e675:5963:8102:de1e:4634:76dd:e501">
-=======
-      <node id="7" label="7162:bc5b:aef3:f9dc:6079:33a3:c21c:4c49">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="8" label="39d8:3778:6bb5:b4c1:50f0:132c:b3f1:27dd">
-=======
-      <node id="8" label="ac0c:11c4:85ef:2602:96fb:c609:c144:b34d">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="0"/>
-        </attvalues>
-      </node>
-<<<<<<< HEAD
-      <node id="9" label="e11f:23f0:bcec:ebe9:580a:847a:fe7b:1c42">
-=======
-      <node id="9" label="8c3f:3071:c5ae:2f6b:60d:627:421a:6726">
->>>>>>> cacc610e6b923cf986a651a703ffdcf2ffc8e8f9
-        <attvalues>
-          <attvalue for="modularity_class" value="2"/>
         </attvalues>
       </node>
     </nodes>
