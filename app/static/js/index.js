@@ -203,7 +203,7 @@
                 label: {
                     show: true,
                     position: 'inside',
-                    formatter: "{c}%"
+                    formatter: "{c}"
                 }
             },
             {
