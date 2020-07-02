@@ -80,7 +80,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
                 axisTick: {
                     alignWithLabel: true,
                 },
@@ -121,7 +121,7 @@
                 name: '直接访问量',
                 type: 'bar',
                 barWidth: '35%',
-                data: [10, 52, 200, 334, 390, 330, 220],
+                data: [400, 560, 373, 401, 560, 450, 470],
                 itemStyle: {
                     barBorderRadius: 5
                 }
@@ -167,7 +167,7 @@
                     color: "rgba(255,255,255,0.6)"
                 },
                 type: 'category',
-                data: ['其他', '河南', '山东', '江苏', '广东', '甘肃']
+                data: ['其他', '河南', '山东', '江苏', '河北', '甘肃']
             },
             {
                 show: true,
@@ -181,14 +181,14 @@
                     color: "rgba(255,255,255,0.6)"
                 },
                 type: 'category',
-                data: ['127', '758', '644', '423', '843', '123']
+                data: ['2654', '964', '876', '836', '940', '1023']
             }
         ],
         series: [
             {//条形
-                name: '2011年',
+                name: '2018年',
                 type: 'bar',
-                data: [50, 75, 80, 63, 45, 78],
+                data: [2555, 952, 799, 821, 920, 1024],
                 itemStyle: {
                     barBorderRadius: 20,
                     color: function(params){
@@ -207,14 +207,14 @@
                 }
             },
             {
-                name: '2012年',
+                name: '2019年',
                 type: 'bar',
                 yAxisIndex: 1,
                 //柱子间距
                 barCategoryGap: 50,
                 //宽度
                 barWidth:15,
-                data: [100, 100, 100, 100, 100, 100],
+                data: [2555, 952, 799, 821, 920, 1024],
                 itemStyle: {
                     barBorderRadius: 15,
                     borderColor: "rgba(255,255,255,0.7)",//"#00c1de",
@@ -305,7 +305,7 @@
                 name: '校内流量',
                 type: 'line',
                 smooth: 'true',
-                data: [120, 380, 101, 134, 90, 230, 210],
+                data: [250, 380, 220, 234, 350, 220, 290],
                 // lineStyle: {
                 //     color: "#00d887",
                 //     width: '2'
@@ -341,7 +341,7 @@
                     borderColor: "rgba(221,220,107,0.1)",
                     borderWidth: "8"
                 },
-                data: [150, 180, 201, 154, 190, 330, 410],
+                data: [150, 180, 153, 167, 210, 230, 180],
                 areaStyle: {
                     //设置渐变
                     color: new echarts.graphic.LinearGradient(

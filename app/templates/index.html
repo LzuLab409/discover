@@ -163,11 +163,11 @@
                         text: "线性阈值模型",
                         value: "LT",
                         
-                    },
-                    button2: {
-                        text: "独立级联模型",
-                        value: "IC"
                     }
+                    // button2: {
+                    //     text: "独立级联模型",
+                    //     value: "IC"
+                    // }
                 },
               })
               .then(value => {
@@ -242,9 +242,18 @@
                         success:function(result){
                             typenum=result.type
                             console.log(typenum)
+                            var active_node='种子节点:'+result.layers[0].toString();
+                            if(result.layers.length<=1){
+                                active_node=active_node.concat(' 未影响其他节点')
+                            }else{
+                                for(var i=1;i<result.layers.length;i++){
+                                    active_node=active_node.concat(' 激活',i,'层:',result.layers[i].toString())
+                                }
+                            }
                             swal({
                                 icon: "success",
-                                title: result.msg
+                                title: result.msg,
+                                text: active_node
                             })
                             //此处可以返回生成的数据文件个数以及路径规则
                         },
@@ -273,8 +282,8 @@
             var dom = document.getElementById("showresult");
             var myChart = echarts.init(dom);
             option = null;
-            myChart.hideLoading();
-            var path = 'static/data/xml/data.xml'
+            myChart.hideLoading();//Math.floor(Math.random()*20000+10000)
+            var path = 'static/data/xml/data.xml?tmp='+Math.floor(Math.random()*100+0)
             //console.log(path)
             $.get(path, function (xml) {
                 myChart.hideLoading();
