@@ -20,8 +20,10 @@ import logging
 from nose.tools import *
 from networkx import *
 from linear_threshold import *
+from ICM import *
 import time
 import numpy as np
+import copy
 
 bp=Blueprint('visual',__name__)
 
@@ -71,6 +73,17 @@ def excuteLT(sweed,file):
     print(layers)  #[[25], [33, 3, 6, 8, 55, 80, 50, 19, 54, 23, 75, 28, 29, 30, 35]]
     print(lengths) #15
     print('Running time: %s Seconds'%(end-start))  #输出代码运行时间
+    return G,layers
+
+def excuteIC(sweed,filePath):
+    if ',' in sweed:
+        sweed=sweed.split(',')
+    else:
+        sweed=sweed.split('，')
+    sweed=list(map(int,sweed))    
+    G = nx.read_edgelist(filePath, nodetype=int)
+    layers=ICM(G,sweed,p=0.7)
+    print('layers:{}'.format(layers))
     return G,layers
 
 def generateXml(G,layers):
@@ -142,7 +155,7 @@ def submit():
                 G,layers=excuteLT(nodes,filePath)
                 result['layers']=layers
                 result['type']=len(layers)
-                if len(layers)==0:
+                if len(layers)==1:
                     result['msg']='选择的种子节点未激活网络中任何其他节点'
                 else:
                     try:
@@ -152,8 +165,32 @@ def submit():
                     except IOError as e:
                         result['status']=False
                         result['msg']=e
-            # elif algorithm == 'IC':
-            #     pass
+            elif algorithm == 'IC':
+                G,layers=excuteIC(nodes,filePath)
+                if ',' in nodes:
+                    nodes=nodes.split(',')
+                else:
+                    nodes=nodes.split('，')
+                nodes=list(map(int,nodes)) 
+                ly=[]
+                temp=copy.deepcopy(layers)
+                for i in range(len(layers)):
+                    if layers[i] in nodes:
+                        del temp[i]
+                ly.append(nodes) 
+                ly.append(temp)
+                result['layers']=ly
+                result['type']=len(ly)
+                if len(ly)==1:
+                    result['msg']='选择的种子节点未激活网络中任何其他节点'
+                else:
+                    try:
+                        import toXml as toXml
+                        toXml.generateXml(G,ly)
+                        result['msg']='选择的种子节点所激活网络中的其他节点已用不同类别标识'
+                    except IOError as e:
+                        result['status']=False
+                        result['msg']=e
             else:
                 result['msg']='error: 算法开发中，暂不支持所选择的算法'
         return jsonify(result)
